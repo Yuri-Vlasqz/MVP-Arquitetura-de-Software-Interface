@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="styles.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<title>Tudo a Ver 2.0: Descubra onde assistir em qualquer lugar</title>
+</head>
+<body>
+	<header>
+		<nav class="container">
+			<!-- Logo & Nome -->
+			<div class="logo-container">
+				<span class="logo">
+					<i class="fa-solid fa-arrows-to-eye logo-icon"></i>
+				</span>
+				<span class="logo-name">Tudo a Ver
+					<span class="version">2.0</span>
+				</span>
+			</div>
+			<!-- Navegacao ao meio -->
+			<div role="tablist" aria-label="tabs" id="nav-meio" class="tablist">
+				<button role="tab" aria-selected="false" aria-controls="panel-pesquisa" id="tab-pesquisa" class="tab-btn">Pesquisa</button>
+				<button role="tab" aria-selected="false" aria-controls="panel-detalhes" id="tab-detalhes" class="tab-btn">Detalhes</button>
+				<button role="tab" aria-selected="false" aria-controls="panel-listas" id="tab-listas" class="tab-btn">Listas</button>
+				<!-- <button role="tab" aria-selected="false" aria-controls="panel-seguidores" id="tab-seguidores" class="tab-btn">Seguidores</button> -->
+			</div>
+			<!-- Navegacao a direita -->
+			<div role="session" aria-label="session-btn" id="nav-direita" class="session-btn">
+				<button role="login" aria-hidden="false" id="login-btn" class="log-btn">Login</button>
+				<button role="signup" aria-hidden="false" id="signup-btn" class="log-btn">Cadastro</button>
+				<div id="user-container" class="user-container" style="display: none;">
+					<span class="user-icon">
+						<img id="auth-user-icon" alt="Icone de Usuario"/>
+					</span>
+					<span id="username" class="username"></span>
+				</div>
+				<button role="logout" id="logout-btn" class="log-btn">Sair</button>
+			</div>
+		</nav>
+    </header>
+    
+    <main class="container">
+		<!-- Seção de Pesquisa -->
+		<section role="tabpanel" aria-labelledby="tab-pesquisa" aria-hidden="true" id="panel-pesquisa" class="tabpanel">
+			<div class="titulo-secao">Pesquise qualquer programa</div>
+
+			<div class="search-container">
+                <input type="text" id="search-input" placeholder="Digite o nome do filme ou série...">
+                <button id="search-button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="movie">Filmes
+                    <span class="count" id="movies-count">0</span>
+                </button>
+                <button class="filter-btn" data-filter="tv">Séries
+                    <span class="count" id="series-count">0</span>
+                </button>
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Carregando resultados...</p>
+            </div>
+
+            <div id="results-container" class="results-container">
+                <!-- Os resultados serão inseridos aqui pelo JavaScript -->
+            </div>
+		</section>
+		
+		<!-- Seção de Detalhes -->
+		<section role="tabpanel" aria-labelledby="tab-detalhes" aria-hidden="true" id="panel-detalhes" class="tabpanel">
+			<div class="titulo-secao">Descubra onde assistir</div>
+
+			<div id="details-empty" class="details-empty">
+				<p>Selecione um programa na aba de pesquisa para mais detalhes.</p>
+			</div>
+            
+            <div id="details-loading" class="loading">
+                <div class="spinner"></div>
+                <p>Carregando detalhes...</p>
+            </div>
+
+            <div id="details-content" class="details-content">
+                <div class="details-header">
+                    <div class="poster-container">
+                        <img id="details-poster" src="" alt="Pôster">
+						<div class="list-adder" id="list-adder">
+							<!-- menu dropdown com listas -->
+						</div>
+                    </div>
+                    <div class="info-container">
+                        <h2 id="details-title"></h2>
+                        <p id="details-original-title" class="original-title"></p>
+						<div id="details-type">
+						</div>
+                        <p id="details-release-date"></p>
+                        <p id="details-runtime"></p>
+                        <div id="details-genres" class="genres-container"></div>
+                        <p id="details-tagline" class="tagline"></p>
+                        <h3>Sinopse</h3> 
+                        <p id="details-overview" class="overview"></p>
+                    </div>
+                </div>
+
+                <div class="availability-section">
+                    <h3>Plataformas disponíveis:</h3>
+                    <div class="country-selector">
+                        <label for="country-select">Selecione o país:</label>
+                        <select id="country-select">
+                            <!-- Opções de países serão inseridas pelo JavaScript -->
+                        </select>
+                    </div>
+                    <div id="providers-container" class="providers-container">
+                        <!-- Os provedores serão inseridos aqui pelo JavaScript -->
+                    </div>
+                    <div class="justwatch-attribution">
+                        <a href="https://www.justwatch.com" target="_blank" rel="noopener" class="justwatch-link">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/JustWatch_Logo.svg/512px-JustWatch_Logo.svg.png?20241206142234" alt="JustWatch Logo" title="Descubra onde assistir seus programas no JustWatch." class="justwatch-logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+		</section>
+		
+		<!-- Seção de Listas -->
+		<section role="tabpanel" aria-labelledby="tab-listas" aria-hidden="true" id="panel-listas" class="tabpanel">
+			<div class="titulo-secao">Crie suas listas</div>
+			<div class="create-list-container">
+                <input type="text" id="create-list-input" placeholder="Digite o nome da nova lista...">
+                <button id="create-list-button" title="Criar nova lista">
+					<i class="fa-solid fa-plus"></i>
+				</button>
+            </div>
+
+			<div class="titulo-secao">Explore suas listas</div>
+			<div class="lists-container" id="listsContainer">
+				<!-- Listas serão adicionadas dinamicamente aqui -->
+			</div>
+		</section>
+    </main>
+
+	<footer>
+		<div class="footer-content container">
+			<div class="project-info">
+				<h3>Sobre o Projeto</h3>
+				<p> O Tudo a Ver 2.0 é uma aplicação web que te ajuda a encontrar seus filmes e séries favoritos. 
+					Crie suas listas e descubra onde assistir, em qualquer lugar.
+					<!-- O projeto utiliza as seguintes APIs externas:
+					<li>TMDB (<i>The Movie DataBase</i>) para obter dados sobre programas e onde assisti-los.</li>
+					<li>Auth0 para autenticação e autorização de usuários.</li> -->
+				</p>
+			</div>
+			<div class="tmdb-attribution">
+				<a href="https://www.themoviedb.org" target="_blank">
+					<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg" alt="TMDB Logo" class="tmdb-logo">
+				</a>
+				<p>This product uses the TMDB API but is not endorsed or certified by TMDB.</p>
+			</div>
+		</div>
+    </footer>
+
+	<!-- Modal de Notificação -->
+	<div class="modal-overlay notification-overlay">
+		<div class="modal notification-modal">
+			<div class="modal-header">
+				<div class="modal-title">Notificação</div>
+			</div>
+			<div id="notification-message" class="modal-body">
+				<p>Este modal fechará automaticamente.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn-accept">OK</button>
+			</div>
+			<div class="notification-timer"></div>
+		</div>
+	</div>
+	
+	<!-- Modal de Confirmação -->
+	<div class="modal-overlay confirmation-overlay">
+		<div class="modal confirmation-modal">
+			<div class="modal-header">
+				<div class="modal-title">Confirmação</div>
+			</div>
+			<div id="confirmation-message" class="modal-body">
+				<p>Tem certeza que deseja fazer essa ação? Esta ação não pode ser desfeita.</p>
+			</div>
+			<div class="modal-footer">
+				<button class="btn-cancel">Cancelar</button>
+				<button class="btn-confirm">Confirmar</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal de atualização -->
+	<div class="modal-overlay update-overlay">
+		<div class="modal update-modal">
+			<div class="modal-header">
+				<div class="modal-title">Atualização</div>
+			</div>
+			<div id="update-message" class="modal-body">
+				<p>Tem certeza que deseja fazer essa ação? Esta ação nao pode ser desfeita.</p>
+			</div>
+			<div class="modal-input">
+				<input type="text" id="update-input" placeholder="Digite o novo nome...">
+				<div class="error-message" id="errorMessage">O nome inserido é igual ao nome atual.</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn-edit-cancel">Cancelar</button>
+				<button class="btn-edit-confirm">Editar</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+	<script src="auth_app.js"></script>
+	<script src="ui_app.js"></script>
+</body>
+</html>
