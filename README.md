@@ -49,7 +49,7 @@ Esta SPA (_Single Page Application_), utiliza as seguintes tecnologias:
 
 #### Configuração do Auth0 para autenticação de usuários:
 1. Crie uma conta no [Auth0](https://auth0.com/).
-2. Crie uma aplicação do tipo SPA no painel Auth0 e obtenha esses valores:
+2. Crie uma aplicação do tipo SPA no [painel Auth0](https://auth0.com/docs/get-started/auth0-overview/dashboard) e obtenha esses valores:
     - `Domain`
     - `Client ID`
 3. Configure os campos da aplicação SPA com os seguintes valores:
