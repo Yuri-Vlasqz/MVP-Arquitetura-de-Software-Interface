@@ -5,7 +5,20 @@ let isAuthenticated = false;
 let accessToken = '';
 let userProfile = null;
 
-const API_BASE_URL = 'http://localhost:5000/api'; //'http://127.0.0.1:5000/api';
+// === Variáveis de url base da API ===
+let API_BASE_URL = '';
+initAPIBaseURL();
+// inicializar a url base da API
+async function initAPIBaseURL() {
+    fetch('/config')
+    .then(response => response.json())
+    .then(data => {
+        API_BASE_URL = data.api_base_url + '/api';
+        console.log('Conectando a API no endereço:', data.api_base_url);
+    })
+    .catch(error => console.error("Erro ao carregar url da API:", error));
+} 
+
 
 // Inicializar o SDK do Auth0
 async function initAuth0() {

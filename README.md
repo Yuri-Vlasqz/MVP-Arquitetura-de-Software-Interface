@@ -69,6 +69,7 @@ No diretório raiz do repositório, crie o arquivo `.env` e preencha com os valo
 AUTH0_DOMAIN="Domain"
 AUTH0_CLIENT_ID="Client ID"
 AUTH0_API_AUDIENCE="API Identifier"
+API_BASE_URL="http://localhost:5000"
 ```
 
 <br>

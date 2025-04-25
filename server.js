@@ -14,7 +14,8 @@ app.get('/config', (req, res) => {
   res.json({ 
     domain:   process.env.AUTH0_DOMAIN, 
     clientId: process.env.AUTH0_CLIENT_ID,
-    audience: process.env.AUTH0_API_AUDIENCE
+    audience: process.env.AUTH0_API_AUDIENCE,
+    api_base_url: process.env.API_BASE_URL
   });
 });
 
