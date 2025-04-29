@@ -10,7 +10,7 @@ No contexto da crescente variedade de serviços de streaming e da variação de 
 ## Arquitetura da aplicação:
 
 <p align="center">
-  <img src="assets/Fluxograma%20de%20arquitetura%20de%20MVP.png">
+  <img src="assets/Fluxograma%20de%20arquitetura%20de%20MVP.png" width="1024">
 </p>
 <h6 align="center">Fluxograma - Cenário 1.1</h6>
 
@@ -31,7 +31,7 @@ No contexto da crescente variedade de serviços de streaming e da variação de 
 
 
 <p align="center">
-  <img src="assets\SPA-layout.png">
+  <img src="assets\SPA-layout.png" width="1280">
 </p>
 <h6 align="center">Layout da Interface</h6>
 

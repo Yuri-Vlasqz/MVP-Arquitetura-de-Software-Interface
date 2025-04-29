@@ -21,7 +21,6 @@ app.get('/config', (req, res) => {
 
 //Aqui definimos o entrypoint do nosso serviço web
 app.get("/*", (_, res) => {
-  // res.sendFile(join(__dirname, "index.html"));
   res.sendFile(join(__dirname, "index.html"));
 });
 

@@ -5,7 +5,7 @@ let isAuthenticated = false;
 let accessToken = '';
 let userProfile = null;
 
-// === Variáveis de url base da API ===
+// === Variável de acesso a API ===
 let API_BASE_URL = '';
 initAPIBaseURL();
 // inicializar a url base da API
@@ -14,7 +14,7 @@ async function initAPIBaseURL() {
     .then(response => response.json())
     .then(data => {
         API_BASE_URL = data.api_base_url + '/api';
-        console.log('Conectando a API no endereço:', data.api_base_url);
+        // console.log('API no endereço:', data.api_base_url);
     })
     .catch(error => console.error("Erro ao carregar url da API:", error));
 } 
@@ -63,11 +63,9 @@ async function initAuth0() {
         }
     } catch (error) {
         console.error(`Erro ao inicializar Auth0: ${error.message}`, true);
-    } finally {
-        // showLoader(false);
     }
     })
-    .catch(error => console.error("Erro ao carregar as config:", error));
+    .catch(error => console.error("Erro ao carregar /config:", error));
 }
 
 // Atualizar o estado de autenticação
@@ -82,8 +80,6 @@ async function updateAuthState() {
             // Obter o perfil do usuário
             userProfile = await auth0Client.getUser();
 
-            // Atualizar a UI
-            // updateUIAfterLogin();
         } catch (error) {
             console.error(`Erro ao obter informações do usuário: ${error.message}`);
         }
@@ -97,13 +93,13 @@ document.addEventListener('DOMContentLoaded', initAuth0);
  * Função para chamar endpoints protegidas da API .
  * @param {string} apiRoute - rota da API ('/usuarios', '/listas', etc.)
  * @param {string} apiMethod - metodo da rota ('GET', 'POST', 'PUT', 'DELETE')
- * @param {Object} params - parametros da URL
+ * @param {Object} params - Opcional: parametros da URL
  * @param {Object} body - Opcional: corpo de requisição para metodos POST/PUT.
- * @returns {Promise} - Promise that resolves to JSON data or rejects with an error
+ * @returns {Promise} - Promessa da resposta da API
  */
 async function callProtectedAPI(apiRoute, apiMethod, params = null, body = null) {
     if (!accessToken) {
-        console.log('Você precisa fazer login primeiro!');
+        // console.log('Você precisa fazer login primeiro!');
         return null;
     }
     const url = new URL(`${API_BASE_URL}${apiRoute}`);
@@ -133,13 +129,12 @@ async function callProtectedAPI(apiRoute, apiMethod, params = null, body = null)
         console.log('Enviando requisição para a API protegida...');
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log(response);
     
         if (!response.ok) {
             throw new Error(data.mensagem || 'Erro ao chamar a API protegida');
         }
     
-        console.log(`Resposta da API: ${response.status}`, data);  
+        // console.log(`Resposta da API: ${response.status}`, data);  
         return data;
 
     } catch (error) {
@@ -153,7 +148,7 @@ async function callProtectedAPI(apiRoute, apiMethod, params = null, body = null)
  * Função para chamar endpoints publicas da API, (somente metodos GET).
  * @param {string} apiRoute - rota da API ('/search' e '/details')
  * @param {Object} apiParams - parametros da URL
- * @returns {Promise} - Promise that resolves to JSON data or rejects with an error
+ * @returns {Promise} - Promessa da resposta da API
  */
 async function callAPI(apiRoute, apiParams = null) {
     const url = new URL(`${API_BASE_URL}${apiRoute}`);
@@ -172,7 +167,7 @@ async function callAPI(apiRoute, apiParams = null) {
             throw new Error(data.message || 'Erro ao chamar a API');
         }
     
-        console.log(`Resposta da API: ${response.status}`, data);
+        // console.log(`Resposta da API: ${response.status}`, data);
         return data;
 
     } catch (error) {

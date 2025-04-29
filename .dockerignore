@@ -1,3 +1,4 @@
-assets
 .gitignore
+assets
+node_modules
 README.md
